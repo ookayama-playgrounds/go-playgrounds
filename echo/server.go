@@ -1,15 +1,15 @@
 package main
 
 import (
-	"net/http"
+	"github.com/ookayama-playgrounds/go-playgrounds/echo/handler"
 	"github.com/labstack/echo"
 )
 
 func main() {
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World")
-	})
-	e.Logger.Fatal(e.Start(":1323"))
+	e.GET("/hello", handler.Hello)
+	e.GET("/hey/:email", handler.GetHello)
+	e.POST("/hey", handler.InsertHello)
+	e.Logger.Fatal(e.Start(":8080"))
 }
 
